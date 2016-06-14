@@ -24,6 +24,7 @@ const merge = require('object-funcs/merge')
 
 * [defined](#definedarg-arg-)
 * [merge](#mergeobj-obj-)
+* [only](#onlyobj-keys)
 * [similar](#similarobj-search)
 
 ## defined([arg], [arg], [...])
@@ -88,6 +89,22 @@ merge(ref, {a:1})
 merge(ref, {foo:{b:2}})
 ```
 
+## only(obj, keys)
+
+Return a new **Plain Object** with filtered properties
+
+`keys` can be a string or an array of targeted keys
+
+```js
+const only = require('object-funcs/only')
+
+// {a:1, b:2}
+only({a:1, b:2, c:3}, 'a b')
+
+// {b:2, c:3}
+only({a:1, b:2, c:3}, ['b', 'c'])
+```
+
 ## similar(obj, search)
 
 Partial comparison of two objects
@@ -109,7 +126,11 @@ similar({foo:{bar:{baz:'quux', c:3}, b:2}, a:1}, {foo:{bar:{baz:'quux'}}})
 
 ## Thanks
 
-Mainly forked / inspired by [defined](https://github.com/substack/defined), [xtend](https://github.com/Raynos/xtend) and [node-partial-compare](https://github.com/defunctzombie/node-partial-compare)
+Mainly forked / inspired on
+- [defined](https://github.com/substack/defined)
+- [node-partial-compare](https://github.com/defunctzombie/node-partial-compare)
+- [only](https://github.com/tj/node-only)
+- [xtend](https://github.com/Raynos/xtend)
 
 ## License
 

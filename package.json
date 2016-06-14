@@ -1,6 +1,6 @@
 {
   "name": "object-funcs",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A very limited subset of object functions I use every day",
   "repository": "jeromedecoster/object-funcs",
   "main": "index.js",
@@ -31,6 +31,6 @@
     "tape": "^4.5.1"
   },
   "dependencies": {
-    "is-funcs": "^0.2.1"
+    "is-funcs": "^0.3.1"
   }
 }
