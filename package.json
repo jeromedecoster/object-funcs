@@ -1,18 +1,20 @@
 {
   "name": "object-funcs",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A very limited subset of object functions I use every day",
   "repository": "jeromedecoster/object-funcs",
   "files": [
     "defined.js",
     "merge.js",
-    "only.js"
+    "only.js",
+    "similar.js"
   ],
   "keywords": [
     "object",
     "defined",
     "merge",
-    "only"
+    "only",
+    "similar"
   ],
   "author": {
     "name": "Jérôme Decoster",
