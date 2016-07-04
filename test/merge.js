@@ -15,6 +15,11 @@ test('merge', function (t) {
   t.deepEqual(fn(a, {b:noop}),          {a:'foo', b:noop})
   t.deepEqual(fn(a, []),                {a:'foo'})
   t.deepEqual(fn(a, [1]),               {a:'foo'})
+  t.deepEqual(fn(a, Math),              {a:'foo'})
+  t.deepEqual(fn(a, noop),              {a:'foo'})
+  t.deepEqual(fn(a, /./),               {a:'foo'})
+  t.deepEqual(fn(a, NaN),               {a:'foo'})
+  t.deepEqual(fn(a, 132),               {a:'foo'})
   t.deepEqual(fn({a:0}, {b:true}),      {a:0, b:true})
   t.deepEqual(fn({a:0}, {b:false}),     {a:0, b:false})
   t.deepEqual(fn({a:0}, b),             {a:0, b:'bar'})
@@ -51,7 +56,7 @@ test('merge', function (t) {
   t.end()
 })
 
-test('single', function(t) {
+test('merge single', function(t) {
 
   var a = {a:'foo'}
 
@@ -63,7 +68,7 @@ test('single', function(t) {
   t.end()
 })
 
-test('no deep merge', function (t) {
+test('merge no deep merge', function (t) {
 
   var a = {foo:{bar:{baz:'quut'}, no:false}, yes:true}
   var b = {foo:{bar:{c:3}, b:2}, a:1}
@@ -79,7 +84,7 @@ test('no deep merge', function (t) {
   t.end()
 })
 
-test('arguments', function(t) {
+test('merge arguments', function(t) {
 
   var a = {a:'foo'}
   var b = {b:'bar'}

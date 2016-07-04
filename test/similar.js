@@ -1,34 +1,41 @@
 const fn = require('../similar')
 const test = require('tape')
 
-test('simple', function (t) {
+test('similar simple', function (t) {
 
   var a = {foo:'bar', baz:54, quux:NaN}
-  var b = {foo:false, bar:true, baz:undefined, quux:null}
   var str = new String('bar')
-  var dat = new Date
-  var noop = function() {}
-  var c = {foo:str, bar:dat, baz:noop}
-
   t.deepEqual(fn(a, {foo:'bar'}),      true)
   t.deepEqual(fn(a, {baz:54}),         true)
   t.deepEqual(fn(a, {quux:NaN}),       true)
+  t.deepEqual(fn(a, {baz:'54'}),       false)
+  t.deepEqual(fn(a, {foo:str}),        false)
+  t.deepEqual(fn(a, {quux:new Number(NaN)}), false)
+
+  var b = {foo:false, bar:true, baz:undefined, quux:null}
   t.deepEqual(fn(b, {foo:false}),      true)
   t.deepEqual(fn(b, {bar:true}),       true)
   t.deepEqual(fn(b, {baz:undefined}),  true)
   t.deepEqual(fn(b, {quux:null}),      true)
-  t.deepEqual(fn(a, {quux:new Number(NaN)}), true)
-  t.deepEqual(fn(a, {baz:'54'}),       false)
-  t.deepEqual(fn(a, {foo:str}),        false)
   t.deepEqual(fn(b, {foo:true}),       false)
   t.deepEqual(fn(b, {bar:false}),      false)
   t.deepEqual(fn(b, {baz:null}),       false)
   t.deepEqual(fn(b, {quux:undefined}), false)
 
+  var dat = new Date
+  var noop = function() {}
+  var c = {foo:str, bar:dat, baz:noop}
+  t.deepEqual(fn(c, {foo:'bar'}),         false)
+  t.deepEqual(fn(c, {foo:str}),           true)
+  t.deepEqual(fn(c, {bar:dat}),           true)
+  t.deepEqual(fn(c, {bar:new Date}),      false)
+  t.deepEqual(fn(c, {baz:function() {}}), false)
+  t.deepEqual(fn(c, {baz:noop}),          true)
+
   t.end()
 })
 
-test('deep', function (t) {
+test('similar deep', function (t) {
 
   var a = {foo:'bar', baz:[54], quux:[{a:1}, {b:2}]}
   t.deepEqual(fn(a, {baz:[54]}),            true)
@@ -53,7 +60,7 @@ test('deep', function (t) {
   t.end()
 })
 
-test('not objects', function (t) {
+test('similar not objects', function (t) {
 
   var a = {foo:'bar', baz:54}
 

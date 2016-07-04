@@ -10,16 +10,6 @@ npm i object-funcs
 
 Package [on npm](https://www.npmjs.com/package/object-funcs)
 
-## require
-
-```js
-// require all functions
-const merge = require('object-funcs').merge
-
-// require only the single function (recommanded)
-const merge = require('object-funcs/merge')
-```
-
 ## API
 
 * [defined](#definedarg-arg-)
@@ -49,6 +39,8 @@ defined(opts.x, opts.y, 100)
 // 'yes'
 defined({}, [], ' ', null, 'yes')
 ```
+
+---
 
 ## merge([obj], [obj], [...])
 
@@ -89,6 +81,8 @@ merge(ref, {a:1})
 merge(ref, {foo:{b:2}})
 ```
 
+---
+
 ## only(obj, keys)
 
 Return a new **Plain Object** with filtered properties
@@ -104,6 +98,8 @@ only({a:1, b:2, c:3}, 'a b')
 // {b:2, c:3}
 only({a:1, b:2, c:3}, ['b', 'c'])
 ```
+
+---
 
 ## similar(obj, search)
 
