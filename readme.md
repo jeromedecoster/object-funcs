@@ -13,6 +13,7 @@ Package [on npm](https://www.npmjs.com/package/object-funcs)
 ## API
 
 * [defined](#definedarg-arg-)
+* [inject](#injecta-b-overwrite-key-value)
 * [merge](#mergeobj-obj-)
 * [only](#onlyobj-keys)
 * [similar](#similarobj-search)
@@ -21,12 +22,11 @@ Package [on npm](https://www.npmjs.com/package/object-funcs)
 
 Return the first defined `arg`
 
-`arg` is defined when
+`arg` is considered not defined when
 
-* `arg` is a **Number** and it's not `NaN`
-* `arg` is a **Plain Object** and has at least 1 key
-* `arg` is an **Array** and is length is > 0
-* `arg` is a **String** and is trimmed length is > 0
+* `arg` is `null`
+* `arg` is `undefined`
+* `arg` is a **Number** and it's `NaN`
 
 ```js
 const defined = require('object-funcs/defined')
@@ -37,7 +37,64 @@ var opts = {y:false, w:4}
 defined(opts.x, opts.y, 100)
 
 // 'yes'
-defined({}, [], ' ', null, 'yes')
+defined(null, undefined, NaN, 'yes')
+```
+
+---
+
+## inject(a, b, [overwrite], [key], [value])
+
+Merge properties of two **Plain Object** into a new one
+
+By default, existing properties of `a` **are not** overwritten by properties of `b`
+
+| Argument | Action |
+| :------ | :------- |
+| **a** | the reference object |
+| **b** | the object from which the properties are taken |
+| **overwrite** | optional `overwrite`, default to `false` |
+| **key** | optional `key` filter. A RegExp to filter which properties of `b` must be included |
+| **value** | optional `value` transform. A Function to modify the injected values from `b` |
+
+```js
+const inject = require('object-funcs/inject')
+
+var ref = {foo:0}
+
+// {foo:0, bar:2, baz:3}
+var obj = inject(ref, {foo:1, bar:2, baz:3})
+
+// {foo:0}
+ref
+```
+
+With `overwritte` enabled
+
+```js
+const inject = require('object-funcs/inject')
+
+// {foo:1, bar:2, baz:3}
+inject({foo:0, baz:3}, {foo:1, bar:2}, true)
+```
+
+With `key` filter
+
+```js
+const inject = require('object-funcs/inject')
+
+// {bar:1, baz:2}
+inject({}, {foo:0, bar:1, baz:2, quux:3}, null, /^ba/)
+```
+
+With `value` transform
+
+```js
+const inject = require('object-funcs/inject')
+
+function func(e) { return parseFloat(e) }
+
+// {foo:'0', bar:1, baz:2}
+inject({foo:'0'}, {bar:'1', baz:'2'}, null, null, func)
 ```
 
 ---

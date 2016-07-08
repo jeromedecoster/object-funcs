@@ -6,8 +6,9 @@ module.exports = function(obj, keys) {
   if (!isObject(obj)) return {}
   if (typeof keys === 'string') keys = keys.trim().split(/ +/)
   else if (Array.isArray(keys) === false) return {}
-  return keys.reduce(function(prev, curr) {
-    if (has.call(obj, curr)) prev[curr] = obj[curr]
-    return prev
-  }, {})
+  var result = {}
+  keys.forEach(function(key) {
+    if (has.call(obj, key)) result[key] = obj[key]
+  })
+  return result
 }

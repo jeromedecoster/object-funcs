@@ -1,10 +1,11 @@
 {
   "name": "object-funcs",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "A very limited subset of object functions I use every day",
   "repository": "jeromedecoster/object-funcs",
   "files": [
     "defined.js",
+    "inject.js",
     "merge.js",
     "only.js",
     "similar.js"
@@ -12,6 +13,7 @@
   "keywords": [
     "object",
     "defined",
+    "inject",
     "merge",
     "only",
     "similar"
@@ -31,6 +33,6 @@
     "tape": "^4.6.0"
   },
   "dependencies": {
-    "is-funcs": "^0.4.1"
+    "is-funcs": "^0.5.0"
   }
 }

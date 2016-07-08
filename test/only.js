@@ -1,4 +1,5 @@
 const fn = require('../only')
+const object = require('is-funcs/is-object')
 const test = require('tape')
 
 test('only', function (t) {
@@ -15,7 +16,7 @@ test('only', function (t) {
 
   t.deepEqual(fn(a, ['b', 'e']),     {b:2})
   t.deepEqual(fn(a, ['b', 'd']),     {b:2, d:4})
-  t.deepEqual(fn(a, [' b ', ' d ']), {})
+  t.deepEqual(fn(a, [' b ', 'cs d ']), {})
   t.deepEqual(fn(b, ['a']),          {})
   t.deepEqual(fn(b, ['b']),          {b:2})
 
