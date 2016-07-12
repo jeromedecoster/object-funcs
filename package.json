@@ -1,11 +1,10 @@
 {
   "name": "object-funcs",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "A very limited subset of object functions I use every day",
   "repository": "jeromedecoster/object-funcs",
   "files": [
     "defined.js",
-    "inject.js",
     "merge.js",
     "only.js",
     "similar.js"
@@ -13,7 +12,6 @@
   "keywords": [
     "object",
     "defined",
-    "inject",
     "merge",
     "only",
     "similar"

@@ -81,8 +81,17 @@ test('only', function (t) {
   t.deepEqual(fn(b, ''),     {})
   t.deepEqual(fn(b, ' '),    {})
   t.deepEqual(fn(b, 12),     {})
-  t.deepEqual(fn(b, /./),    {})
   t.deepEqual(fn(b, NaN),    {})
 
+  t.end()
+})
+
+test('only regexp', function (t) {
+
+  var a = {foo:0, bar:1, baz:2, quux:3}
+
+  t.deepEqual(fn(a, /^ba/), {bar:1, baz:2})
+  t.deepEqual(fn(a, /./),   a)
+  t.deepEqual(fn(a, /^z/),  {})
   t.end()
 })
